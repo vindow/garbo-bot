@@ -7,11 +7,11 @@ class RNG:
         self.client = bot
 
     @commands.command(name='8ball',
-                    description="Answers a yes/no question.",
-                    brief="Spooky magic answers.",
-                    aliases=['eight_ball','eightball', '8-ball'],
-                    pass_context=True,
-                    no_pm=True)
+                      description="Answers a yes/no question.",
+                      brief="Spooky magic answers.",
+                      aliases=['eight_ball', 'eightball', '8_ball'],
+                      pass_context=True,
+                      no_pm=True)
     async def eight_ball(self, context):
         possible_responses = [
             'It is certain',
@@ -41,8 +41,7 @@ class RNG:
                       description="Rolls a psuedorandom number (default 1-100). "
                                   "Add up to two numbers in your argument to change the range of the roll.",
                       brief="Psuedorandom number generator.",
-                      pass_context=True,
-                      no_pm=True)
+                      pass_context=True)
     async def roll(self, context):
         vals = context.message.content.split(' ')
         if len(vals) == 1:

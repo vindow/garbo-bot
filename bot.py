@@ -14,7 +14,24 @@ async def on_ready():
     print("logged in as " + client.user.name + "#" + client.user.id)
 
 
-@client.command()
+@client.command(name="dubtrack",
+                description="It just gives you the link to the Dubtrack, idiot.",
+                brief="Get the link to the Dubtrack.")
+async def dubtrack():
+    await client.say("The link to the Dubtrack is https://www.dubtrack.fm/join/room123")
+
+
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+    if "brad sucks" in message.content.lower():
+        await client.send_message(message.channel, "I concur.")
+    await client.process_commands(message)
+
+
+@client.command(hidden=True)
 async def load(extension_name : str):
     """Loads an extension."""
     try:
@@ -25,7 +42,7 @@ async def load(extension_name : str):
     await client.say("{} loaded.".format(extension_name))
 
 
-@client.command()
+@client.command(hidden=True)
 async def unload(extension_name : str):
     """Unloads an extension."""
     client.unload_extension(extension_name)

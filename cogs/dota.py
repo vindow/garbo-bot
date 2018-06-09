@@ -13,12 +13,11 @@ class Dota:
         for hero in hero_data:
             self.heroes.append(hero['localized_name'])
 
-    @commands.command(name='randomhero',
+    @commands.command(name='rhero',
                       description="Stop randoming a hero you're losing the draft.",
                       brief="Picks a random Dota 2 hero.",
-                      aliases=['randhero','rhero'],
-                      pass_context=True,
-                      no_pm=True)
+                      aliases=['randhero','randomhero'],
+                      pass_context=True)
     async def random_hero(self, context):
         num_heroes = len(self.heroes)
         hero_index = random.randint(1, num_heroes)
