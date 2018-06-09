@@ -2,9 +2,9 @@ from discord import Game
 from discord.ext import commands
 from os import listdir
 from os.path import isfile, join
+from config import token
 
 client = commands.Bot(command_prefix="!")
-TOKEN_ID = "NDUxNTkxNTQ4MDYxMzUxOTM2.DfECOQ.T1270Rae2W0E8QgM2E3G8-fdeaM"
 cogs_dir = "cogs"
 
 
@@ -55,4 +55,4 @@ if __name__ == "__main__":
             client.load_extension(cogs_dir + "." + extension)
         except Exception as e:
             print(f'Failed to load extension {extension}.')
-    client.run(TOKEN_ID)
+    client.run(token)
