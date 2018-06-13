@@ -14,13 +14,14 @@ class Poll:
                       pass_context=True,
                       no_pm=True)
     async def poll(self, context):
-        message = context.message.content[6:]
+        message = context.message.content
         # Check for valid input
-        if not(message[1].startswith('{') and message[1].endswith('}')):
+        if not re.fullmatch("!poll \{\w+( +\w+)*\}", message):
             await self.client.say("Invalid input for `!poll`. See `!help poll` for help.")
         else:
-            question = message[1]
-            poll_message = await self.client.say(question[1:-1])
+            start = message.find("{") + 1
+            end = message.rfind("}")
+            poll_message = await self.client.say(message[start:end])
             await self.client.add_reaction(poll_message, "👍")
             await self.client.add_reaction(poll_message, "👎")
 
