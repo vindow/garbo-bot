@@ -16,7 +16,7 @@ class Poll:
     async def poll(self, context):
         message = context.message.content
         # Check for valid input
-        if not re.fullmatch("!poll \{\w+( +\w+)*\}", message):
+        if not re.fullmatch("!poll \{ *\w+( +\w+)* *\}", message):
             await self.client.say("Invalid input for `!poll`. See `!help poll` for help.")
         else:
             start = message.find("{") + 1
@@ -33,7 +33,7 @@ class Poll:
                       no_pm=True)
     async def strawpoll(self, context):
         message = context.message.content
-        if not re.fullmatch("!strawpoll \{\w+( +\w+)*\}( \[\w+( +\w+)*\]){2,}", message):
+        if not re.fullmatch("!strawpoll \{ *\w+( +\w+)* *\}( \[ *\w+( +\w+)* *\]){2,}", message):
             await self.client.say("Invalid input for `!strawpoll`. See `!help strawpoll` for help.")
             return
         else:
