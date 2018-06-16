@@ -25,7 +25,8 @@ async def dubtrack():
 
 
 @client.command(name="server",
-                description="Toggles the server region between US West, US South, and US Central",
+                description="Toggles the server region between US West, US South, US Central, and US East."
+                            "Special users only.",
                 brief="Switches the server region.",
                 pass_context=True,
                 no_pm=True)
