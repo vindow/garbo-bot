@@ -1,11 +1,14 @@
 from discord import Game
+from discord import ServerRegion
 from discord.ext import commands
 from os import listdir
 from os.path import isfile, join
 from config import token
+from config import server_id
 
 client = commands.Bot(command_prefix="!")
 cogs_dir = "cogs"
+server_regions = [ServerRegion.us_south, ServerRegion.us_west, ServerRegion.us_central, ServerRegion.us_east]
 
 
 @client.event
@@ -19,6 +22,27 @@ async def on_ready():
                 brief="Get the link to the Dubtrack.")
 async def dubtrack():
     await client.say("The link to the Dubtrack is https://www.dubtrack.fm/join/room123")
+
+
+@client.command(name="server",
+                description="Toggles the server region between US West, US South, and US Central",
+                brief="Switches the server region.",
+                pass_context=True,
+                no_pm=True)
+async def switch_server(context):
+    if context.message.author.server_permissions.manage_server:
+        server = client.get_server(server_id)
+        region_index = 0;
+        for i in range(0, len(server_regions)):
+            if server.region == server_regions[i]:
+                region_index = i + 1
+        if region_index == len(server_regions):
+            region_index = 0
+        region_name = str(server_regions[region_index]).split("-")
+        region_name[0] = region_name[0].upper()
+        region_name[1] = region_name[1].capitalize()
+        await client.edit_server(server, region=server_regions[region_index])
+        await client.say("Changed the server region to " + " ".join(region_name) + ".")
 
 
 @client.event
