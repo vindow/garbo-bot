@@ -12,6 +12,8 @@ class Dota:
         self.heroes = []
         for hero in hero_data:
             self.heroes.append(hero['localized_name'])
+        self.heroes.append("Gunman")
+        self.heroes.append("Gun Guy")
 
     @commands.command(name='rhero',
                       description="Stop randoming a hero you're losing the draft.",
@@ -21,7 +23,10 @@ class Dota:
     async def random_hero(self, context):
         num_heroes = len(self.heroes)
         hero_index = random.randint(1, num_heroes)
-        await self.client.say(context.message.author.mention + ', you should pick ' + self.heroes[hero_index])
+        if self.heroes[hero_index] is "Techies":
+            await self.client.say(context.message.author.mention + ", you shouldn't pick Techies")
+        else:
+            await self.client.say(context.message.author.mention + ', you should pick ' + self.heroes[hero_index])
 
 
 def setup(bot):
