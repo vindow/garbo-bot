@@ -21,10 +21,10 @@ class Dota:
                       pass_context=True)
     async def random_hero(self, context):
         num_heroes = len(self.heroes)
-        hero_index = random.randint(1, num_heroes)
-        if self.heroes[hero_index] is "Techies":
+        hero_index = random.randint(0, num_heroes - 1)
+        if self.heroes[hero_index] == "Techies":
             await self.client.say(context.message.author.mention + ", you shouldn't pick Techies.")
-        elif self.heroes[hero_index] is "Gyrocopter":
+        elif self.heroes[hero_index] == "Gyrocopter":
             await self.client.say(context.message.author.mention + ", you should pick Corki.")
         else:
             await self.client.say(context.message.author.mention + ', you should pick ' + self.heroes[hero_index] + '.')
