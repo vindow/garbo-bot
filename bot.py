@@ -4,7 +4,9 @@ from discord.ext import commands
 from os import listdir
 from os.path import isfile, join
 from config import token
+# from config import test_token
 from config import server_id
+# from config import test_server_id
 
 client = commands.Bot(command_prefix="!")
 cogs_dir = "cogs"
@@ -24,6 +26,13 @@ async def dubtrack():
     await client.say("The link to the Dubtrack is https://www.dubtrack.fm/join/room123")
 
 
+@client.command(name="kys",
+                description="Why do you need help for this?",
+                brief="Guess I'll die. ¯\_(ツ)_/¯")
+async def kys():
+    await client.say(":robot: :gun:")
+
+
 @client.command(name="server",
                 description="Toggles the server region between US West, US South, US Central, and US East."
                             "Special users only.",
@@ -33,6 +42,7 @@ async def dubtrack():
 async def switch_server(context):
     if context.message.author.server_permissions.manage_server:
         server = client.get_server(server_id)
+        # server = client.get_server(test_server_id)
         region_index = 0;
         for i in range(0, len(server_regions)):
             if server.region == server_regions[i]:
@@ -81,3 +91,5 @@ if __name__ == "__main__":
         except Exception as e:
             print(f'Failed to load extension {extension}.')
     client.run(token)
+    # client.run(test_token)
+

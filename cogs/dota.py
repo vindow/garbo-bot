@@ -15,7 +15,7 @@ class Dota:
         self.heroes.append("Gunman")
 
     @commands.command(name='rhero',
-                      description="Stop randoming a hero you're losing the draft.",
+                      description="Stop randoming a hero you're ruining the draft.",
                       brief="Picks a random Dota 2 hero.",
                       aliases=['randhero','randomhero'],
                       pass_context=True)
