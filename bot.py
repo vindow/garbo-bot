@@ -2,10 +2,10 @@ from discord import Game
 from discord import VoiceRegion
 from discord.ext import commands
 import random
-#from config import token
-from config import test_token
-#from config import server_id
-from config import test_server_id
+from config import token
+#from config import test_token
+from config import server_id
+#from config import test_server_id
 
 client = commands.Bot(command_prefix="!")
 server_regions = [VoiceRegion.us_south, VoiceRegion.us_west, VoiceRegion.us_central, VoiceRegion.us_east]
@@ -30,7 +30,10 @@ async def dubtrack(ctx):
                 description="Why do you need help for this?",
                 brief="Guess I'll die. ¯\_(ツ)_/¯")
 async def kys(ctx):
-    await ctx.send(":robot: :gun:")
+    if random.randint(1, 10) == 1:
+        await ctx.send("Not this time. :dizzy_face: :gun: :robot: :dagger: :dizzy_face:")
+    else:
+        await ctx.send(":robot: :gun:")
 
 
 @client.command(name="server",
@@ -40,8 +43,8 @@ async def kys(ctx):
                 pass_context=True,
                 no_pm=True)
 async def switch_server(ctx):
-    #server = client.get_server(server_id)
-    server = client.get_guild(test_server_id)
+    server = client.get_server(server_id)
+    #server = client.get_guild(test_server_id)
     region_index = 0
     for i in range(0, len(server_regions)):
         if server.region == server_regions[i]:
@@ -80,5 +83,5 @@ if __name__ == "__main__":
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
-    #client.run(token)
-    client.run(test_token)
+    client.run(token)
+    #client.run(test_token)
