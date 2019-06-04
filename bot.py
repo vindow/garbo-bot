@@ -43,7 +43,7 @@ async def kys(ctx):
                 pass_context=True,
                 no_pm=True)
 async def switch_server(ctx):
-    server = client.get_server(server_id)
+    server = client.get_guild(server_id)
     #server = client.get_guild(test_server_id)
     region_index = 0
     for i in range(0, len(server_regions)):
